@@ -1,0 +1,75 @@
+<html>
+<head>
+	<title>Map preview</title>
+	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script>
+		var prefix = '';
+
+		function generateImageLink(id)
+		{
+			return prefix + id + '.png#' + Math.floor((Math.random() * 100000) + 1) + '_' + new Date().getTime();
+		}
+	
+		function loadImages()
+		{
+			prefix = $('#prefix').val();
+		
+			$('#imageBox').html('');
+			for (var i = 0; i < $('#count').val(); i++)
+				$('#imageBox').append('<image class="map thumbnail" number="' + i + '" src="' + generateImageLink(i) + '">');
+				
+			setInterval(refreshImages, 1000);
+		}
+		
+		function refreshImages()
+		{
+			$('#imageBox').children('img').each(function() {
+				$(this).attr('src', generateImageLink($(this).attr('number')));
+			});
+		}
+	</script>
+	<style>
+		body {
+			margin-top: 18px;
+		}
+	
+		* {
+			text-align: center;
+		}
+
+		.map {
+			margin: 5px;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Settings</div>
+					<div class="panel-body">
+						<p style="width: 350px; margin-left: auto; margin-right: auto;">
+							Script that automatically refreshes images with maps every 1 second. Useful for testing generator presets.
+						</p>
+						<input placeholder="Name prefix" type="text" id="prefix">
+						<input placeholder="Count of files" type="text" id="count">
+						<button onclick="loadImages()">Load</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Generated maps</div>
+					<div class="panel-body" id="imageBox">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
