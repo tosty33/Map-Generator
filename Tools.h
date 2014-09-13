@@ -3,6 +3,7 @@
 
 #include <random>
 #include <ctime>
+#include <algorithm>
 
 using namespace std;
 
@@ -15,5 +16,6 @@ T rand(T min, T max)
 	return u(generator);
 }
 
+void toLowerCase(std::string& source);
 
 #endif
