@@ -15,6 +15,18 @@ Tile::~Tile()
 {
 }
 
+/* Temporary solution! */
+int Tile::getItemId()
+{
+	if (value >= 0.65)
+		return 9056;
+	if (value >= 0.57)
+		return 10637;
+	else
+		return 4665;
+}
+
+/* Temporary solution! */
 Color Tile::getColor()
 {
 	unsigned char r, g, b;

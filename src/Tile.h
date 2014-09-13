@@ -12,6 +12,7 @@ class Tile
 public:
 	float value = 0.0;
 	Color getColor();
+	int getItemId();
 
 	Tile();
 	~Tile();
@@ -45,6 +46,12 @@ public:
 	inline T operator* (T right)
 	{
 		return (this->value * right);
+	}
+
+	template <class T>
+	inline T operator== (T right)
+	{
+		return (this->value == right);
 	}
 
 	template <class T>

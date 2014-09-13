@@ -27,9 +27,13 @@ void displayHelp()
 		"            Default value: 1\n"
 		"            Count of files to be generated\n"
 		"  --format\n"
-		"            Available formats: PNG|JSON|LUA\n"
+		"            Available formats: OTBM|PNG|JSON|LUA\n"
 		"            Default value: PNG\n"
 		"            Format of output file\n"
+		"            WARNING: Maximum size for OTBM maps is 250x250 SQM, but It'll be fixed in future.\n"
+		"\n"
+		"            If OTBM format is chosen then map is saved in OTBMv2 version for client 8.60\n"
+		"            It can be then easily converted to other version in Remere's Map Editor"
 		"  --preset, -P\n"
 		"            Available presets: island\n"
 		"            Default value: island\n"
@@ -38,11 +42,13 @@ void displayHelp()
 
 int main(int argCount, char *argv[])
 {
+	srand(time(nullptr));
+
 	if (argCount == 0)
 		return 0;
 
 	// Parsing parameters
-	vector<string> availableFormats {"json", "png", "lua"};
+	vector<string> availableFormats {"json", "png", "lua", "otbm"};
 	vector<string> availablePresets {"island"};
 
 	string arg = "", prefix = "", filename = "", format = "png", preset = "island";
@@ -178,6 +184,8 @@ int main(int argCount, char *argv[])
 			MapOutput::saveAsLUA(map, saveName + ".lua");
 		else if (format == "json")
 			MapOutput::saveAsJSON(map, saveName + ".json");
+		else if (format == "otbm")
+			MapOutput::saveAsOTBM(map, saveName + ".otbm");
 	}
 
 	return 0;
