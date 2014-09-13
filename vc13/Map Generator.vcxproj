@@ -80,29 +80,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="../Gradient.cpp" />
-    <ClCompile Include="../IslandGenerator.cpp" />
-    <ClCompile Include="../lodepng.cpp" />
-    <ClCompile Include="../Map.cpp" />
-    <ClCompile Include="../MapOutput.cpp" />
-    <ClCompile Include="../Noise.cpp" />
-    <ClCompile Include="../Perlin.cpp" />
-    <ClCompile Include="../Main.cpp" />
-    <ClCompile Include="../Tile.cpp" />
-    <ClCompile Include="../Tools.cpp" />
+    <ClCompile Include="../src/Gradient.cpp" />
+    <ClCompile Include="../src/IslandGenerator.cpp" />
+    <ClCompile Include="../src/lodepng.cpp" />
+    <ClCompile Include="../src/Map.cpp" />
+    <ClCompile Include="../src/MapOutput.cpp" />
+    <ClCompile Include="../src/Noise.cpp" />
+    <ClCompile Include="../src/Perlin.cpp" />
+    <ClCompile Include="../src/Main.cpp" />
+    <ClCompile Include="../src/Tile.cpp" />
+    <ClCompile Include="../src/Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="../Color.h" />
-    <ClInclude Include="../Gradient.h" />
-    <ClInclude Include="../IslandGenerator.h" />
-    <ClInclude Include="../lodepng.h" />
-    <ClInclude Include="../Map.h" />
-    <ClInclude Include="../MapOutput.h" />
-    <ClInclude Include="../Noise.h" />
-    <ClInclude Include="../Perlin.h" />
-    <ClInclude Include="../Tile.h" />
-    <ClInclude Include="../Tools.h" />
-    <ClInclude Include="../Vec2.h" />
+    <ClInclude Include="../src/Color.h" />
+    <ClInclude Include="../src/Gradient.h" />
+    <ClInclude Include="../src/IslandGenerator.h" />
+    <ClInclude Include="../src/lodepng.h" />
+    <ClInclude Include="../src/Map.h" />
+    <ClInclude Include="../src/MapOutput.h" />
+    <ClInclude Include="../src/Noise.h" />
+    <ClInclude Include="../src/Perlin.h" />
+    <ClInclude Include="../src/Tile.h" />
+    <ClInclude Include="../src/Tools.h" />
+    <ClInclude Include="../src/Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

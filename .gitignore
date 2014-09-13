@@ -13,7 +13,6 @@ vc13/Debug/
 *.opensdf
 *.tmp
 *.suo
-*.filters
 build/
 release/
 debug/

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="basic">
+      <UniqueIdentifier>{539c852d-ca31-4489-9fcb-a6de5aef0c1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="generators">
+      <UniqueIdentifier>{b4281d29-6faa-451d-be37-8a81b616a4d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{10f81f66-b792-4d83-8639-f504e473b513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="noises">
+      <UniqueIdentifier>{89504f53-14b8-4743-bdbd-f0747cba363a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../src/Gradient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/MapOutput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/Noise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/Perlin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/Tools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/lodepng.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/Tile.cpp">
+      <Filter>basic</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/IslandGenerator.cpp">
+      <Filter>generators</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="../src/Gradient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/MapOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/Noise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/Perlin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/Tools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/lodepng.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/Color.h">
+      <Filter>basic</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/Tile.h">
+      <Filter>basic</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/Vec2.h">
+      <Filter>basic</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/IslandGenerator.h">
+      <Filter>generators</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
