@@ -109,7 +109,9 @@ bool MapOutput::saveAsOTBM(const Map& map, string filename)
 	int local_x = -1, local_y = -1, local_z = -1;
 
 	FILE* f;
-	fopen_s(&f, filename.c_str(), "wb");
+
+	if (!fopen_s(&f, filename.c_str(), "wb"))
+		return false;
 
 	vector<unsigned char> header1{
 		0x00, 0x00, 0x00, 0x00,

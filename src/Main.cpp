@@ -142,6 +142,12 @@ int main(int argCount, char *argv[])
 		return 1;
 	}
 
+	if (prefix == "" && filename == "")
+	{
+		cout << "Error: You must set the filename of output file.";
+		return 1;
+	}
+
 	if (filename != "" && count > 1)
 	{
 		cout << "Error: --count argument doesn't work with --filename argument. You should try --prefix argument instead.";
@@ -178,14 +184,19 @@ int main(int argCount, char *argv[])
 			saveName = ss.str();
 		}
 
+		bool result = false;
+
 		if (format == "png")
-			MapOutput::saveAsPNG(map, saveName + ".png");
+			result = MapOutput::saveAsPNG(map, saveName + ".png");
 		else if (format == "lua")
-			MapOutput::saveAsLUA(map, saveName + ".lua");
+			result = MapOutput::saveAsLUA(map, saveName + ".lua");
 		else if (format == "json")
-			MapOutput::saveAsJSON(map, saveName + ".json");
+			result = MapOutput::saveAsJSON(map, saveName + ".json");
 		else if (format == "otbm")
-			MapOutput::saveAsOTBM(map, saveName + ".otbm");
+			result = MapOutput::saveAsOTBM(map, saveName + ".otbm");
+
+		if (!result)
+			cout << "Warning: Map \"" + saveName + "\" could not be saved.";
 	}
 
 	return 0;
