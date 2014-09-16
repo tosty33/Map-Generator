@@ -21,10 +21,7 @@ bool MapOutput::saveAsLUA(const Map& map, string filename)
 		file << "	{";
 		for (unsigned x = 0; x < size; x++)
 		{
-			file << "{";
-			file << round(map.map[x][y].value * 100) / 100;;
-			file << "}";
-
+			file << round(map.map[x][y].value * 100) / 100;
 			if (x != size - 1)
 				file << ", ";
 		}
@@ -58,10 +55,7 @@ bool MapOutput::saveAsJSON(const Map& map, string filename)
 		file << "	[";
 		for (unsigned x = 0; x < size; x++)
 		{
-			file << "[";
-			file << round(map.map[x][y].value * 100) / 100;;
-			file << "]";
-
+			file << round(map.map[x][y].value * 100) / 100;
 			if (x != size - 1)
 				file << ", ";
 		}
