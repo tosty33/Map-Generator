@@ -37,7 +37,10 @@ void displayHelp()
 		"  --preset, -P\n"
 		"            Available presets: island\n"
 		"            Default value: island\n"
-		"            Preset for generated map";
+		"            Preset for generated map"
+		"  --grayscale\n"
+		"            Works only with PNG format.\n"
+		"            Exports the map in the grayscale.";
 }
 
 int main(int argCount, char *argv[])
@@ -53,6 +56,7 @@ int main(int argCount, char *argv[])
 
 	string arg = "", prefix = "", filename = "", format = "png", preset = "island";
 	int size = 0, count = 1;
+	bool grayscale = false;
 
 	for (int i = 0; i < argCount; i++)
 	{
@@ -88,6 +92,10 @@ int main(int argCount, char *argv[])
 			count = atoi(arg.c_str());
 		}
 		else if (arg == "--format")
+		else if (arg == "--grayscale")
+		{
+			grayscale = true;
+		}
 		{
 			i++;
 			arg = argv[i];
@@ -187,7 +195,7 @@ int main(int argCount, char *argv[])
 		bool result = false;
 
 		if (format == "png")
-			result = MapOutput::saveAsPNG(map, saveName + ".png");
+			result = MapOutput::saveAsPNG(map, saveName + ".png", grayscale);
 		else if (format == "lua")
 			result = MapOutput::saveAsLUA(map, saveName + ".lua");
 		else if (format == "json")

@@ -72,7 +72,7 @@ bool MapOutput::saveAsJSON(const Map& map, string filename)
 	return true;
 }
 
-bool MapOutput::saveAsPNG(const Map& map, string filename)
+bool MapOutput::saveAsPNG(const Map& map, string filename, bool grayscale /*= false */)
 {
 	int size = map.getSize();
 	auto tiles = map.map;
@@ -83,9 +83,16 @@ bool MapOutput::saveAsPNG(const Map& map, string filename)
 	for (unsigned y = 0; y < size; y++)
 	for (unsigned x = 0; x < size; x++)
 	{
-		out[4 * size * y + 4 * x + 0] = tiles[x][y].getColor().r;
-		out[4 * size * y + 4 * x + 1] = tiles[x][y].getColor().g;
-		out[4 * size * y + 4 * x + 2] = tiles[x][y].getColor().b;
+		Color color = tiles[x][y].getColor();
+		if (grayscale)
+		{
+			float tmp = (tiles[x][y] + 1.0f) * 127.5f;
+			color.set(tmp, tmp, tmp, 255);
+		}
+
+		out[4 * size * y + 4 * x + 0] = color.r;
+		out[4 * size * y + 4 * x + 1] = color.g;
+		out[4 * size * y + 4 * x + 2] = color.b;
 		out[4 * size * y + 4 * x + 3] = 255;
 	}
 
