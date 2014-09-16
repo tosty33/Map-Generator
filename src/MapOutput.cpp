@@ -95,6 +95,9 @@ bool MapOutput::saveAsPNG(const Map& map, string filename)
 	return true;
 }
 
+/*
+	Created by using RME source code and hex editor
+*/
 bool MapOutput::saveAsOTBM(const Map& map, string filename)
 {
 	int size = map.getSize();
@@ -104,7 +107,7 @@ bool MapOutput::saveAsOTBM(const Map& map, string filename)
 
 	FILE* f;
 
-	if (!fopen_s(&f, filename.c_str(), "wb"))
+	if (fopen_s(&f, filename.c_str(), "wb"))
 		return false;
 
 	vector<unsigned char> header1{
@@ -119,23 +122,7 @@ bool MapOutput::saveAsOTBM(const Map& map, string filename)
 		0x00, 0x00, 
 		
 		0xFE, 0x02, // OTBM_MAP_DATA node
-		0x01, // Description
-		0x27, 0x00, // Description length
-		
-		0x53,
-		0x61, 0x76, 0x65, 0x64,
-		0x20, 0x77, 0x69, 0x74,
-		0x68, 0x20, 0x52, 0x65,
-		0x6D, 0x65, 0x72, 0x65,
-		0x27, 0x73, 0x20, 0x4D,
-
-		0x61, 0x70, 0x20, 0x45,
-		0x64, 0x69, 0x74, 0x6F,
-		0x72, 0x20, 0x33, 0x2E,
-		0x30, 0x20, 0x42, 0x45,
-
-		0x54, 0x41, 
-		
+		0x01, 0x00, 0x00, // Map description
 		0x01, 0x00,	0x00, // Map description
 		0x0B, 0x00, 0x00, // Spawn file
 		0x0D, 0x00, 0x00  // House file
@@ -162,8 +149,8 @@ bool MapOutput::saveAsOTBM(const Map& map, string filename)
 	}
 
 
-	fwrite(&otbmMapSize, 2, 1, f); // size X
-	fwrite(&otbmMapSize, 2, 1, f); // size Y
+	fwrite(&otbmMapSize, sizeof(unsigned short), 1, f); // size X
+	fwrite(&otbmMapSize, sizeof(unsigned short), 1, f); // size Y
 
 	for (auto hex : header2)
 		fputc(hex, f);
