@@ -35,9 +35,6 @@
     <ClCompile Include="../src/Noise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="../src/Perlin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="../src/Tools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,6 +48,9 @@
       <Filter>generators</Filter>
     </ClCompile>
     <ClCompile Include="../src/Main.cpp" />
+    <ClCompile Include="../src/Perlin.cpp">
+      <Filter>noises</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="../src/Gradient.h">
@@ -60,12 +60,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="../src/MapOutput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="../src/Noise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="../src/Perlin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="../src/Tools.h">
@@ -85,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="../src/IslandGenerator.h">
       <Filter>generators</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/Noise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="../src/Perlin.h">
+      <Filter>noises</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

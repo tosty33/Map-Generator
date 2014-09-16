@@ -62,18 +62,15 @@ bool IslandGenerator::generate(Map& map)
 		Gradient::radialGradient(map, Vec2<int>(map.getSize() / 2, map.getSize() / 2), map.getSize() / rand(1.4f, 1.6f));
 	}
 
-	Noise::perlin(map, 8, 10, 0.4);
-	
-	for (int i = 0; i < 10; i++)
+	Map tmpMap = map.getSize();
+
+	Noise::perlin(tmpMap, 8, 10, 0.4);
+	tmpMap.multiply(1.2f);
+	map.joinWith(tmpMap);
+
+	for (int i = 0; i < 15; i++)
 		map.smooth();
 
-	for (int x = 0; x < map.getSize(); x++)
-	{
-		for (int y = 0; y < map.getSize(); y++)
-		{
-			if (map.map[x][y] > 1) map.map[x][y] = 1;
-		}
-	}
-
+	map.normalize();
 	return true;
 }

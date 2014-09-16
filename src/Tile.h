@@ -80,6 +80,13 @@ public:
 		return *this;
 	}
 
+	template <class T>
+	inline Tile& operator-= (T right)
+	{
+		value -= right;
+		return *this;
+	}
+
 	// Friends
 	friend ostream& operator<<(ostream& out, const Tile& tile);
 };

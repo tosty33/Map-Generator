@@ -156,7 +156,7 @@ void Map::smooth()
 				int count = 0;
 				if (x > 0)
 				{
-					if (map[x - 1][y] >= 0.57)
+					if (map[x - 1][y] >= 0.0)
 					{
 						count++;
 						horiz++;
@@ -165,7 +165,7 @@ void Map::smooth()
 
 				if (x < size - 1)
 				{
-					if (map[x + 1][y] >= 0.57)
+					if (map[x + 1][y] >= 0.0)
 					{
 						count++;
 						horiz++;
@@ -174,7 +174,7 @@ void Map::smooth()
 
 				if (y > 0)
 				{
-					if (map[x][y - 1] >= 0.57)
+					if (map[x][y - 1] >= 0.0)
 					{
 						count++;
 						vert++;
@@ -183,17 +183,17 @@ void Map::smooth()
 
 				if (y < size - 1)
 				{
-					if (map[x][y + 1] >= 0.57)
+					if (map[x][y + 1] >= 0.0)
 					{
 						count++;
 						vert++;
 					}
 				}
 
-				if (map[x][y] >= 0.57)
+				if (map[x][y] >= 0.0)
 				{
 					if (count < 2 || vert == 0 || horiz == 0)
-						map[x][y] = 0;
+						map[x][y] = -1.0;
 				}
 				else if ((horiz == 2 && vert == 1) || (horiz == 2 && vert == 0) || (horiz == 2 && vert == 2))
 				{
@@ -205,7 +205,7 @@ void Map::smooth()
 				}
 			}
 			else
-				map[x][y] = 0.0;
+				map[x][y] = -1.0;
 		}
 	}
 }

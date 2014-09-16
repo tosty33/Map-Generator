@@ -26,14 +26,14 @@ void displayHelp()
 		"  --count, -C\n"
 		"            Default value: 1\n"
 		"            Count of files to be generated\n"
-		"  --format\n"
+		"  --output, -O\n"
 		"            Available formats: OTBM|PNG|JSON|LUA\n"
 		"            Default value: PNG\n"
 		"            Format of output file\n"
-		"            WARNING: Maximum size for OTBM maps is 250x250 SQM, but It'll be fixed in future.\n"
 		"\n"
 		"            If OTBM format is chosen then map is saved in OTBMv2 version for client 8.60\n"
 		"            It can be then easily converted to other version in Remere's Map Editor"
+		"            WARNING: Maximum size for OTBM maps is 250x250 SQM, but It'll be fixed in future.\n"
 		"  --preset, -P\n"
 		"            Available presets: island\n"
 		"            Default value: island\n"
@@ -47,8 +47,11 @@ int main(int argCount, char *argv[])
 {
 	srand(time(nullptr));
 
-	if (argCount == 0)
-		return 0;
+	if (argCount <= 1)
+	{
+		cout << "Use --help argument to get list of available parameters.";
+		return 1;
+	}
 
 	// Parsing parameters
 	vector<string> availableFormats {"json", "png", "lua", "otbm"};
@@ -61,8 +64,6 @@ int main(int argCount, char *argv[])
 	for (int i = 0; i < argCount; i++)
 	{
 		arg = argv[i];
-		cout << arg << endl;
-
 		if (arg == "--help" || arg == "-H")
 		{
 			displayHelp();
@@ -91,11 +92,11 @@ int main(int argCount, char *argv[])
 			arg = argv[i];
 			count = atoi(arg.c_str());
 		}
-		else if (arg == "--format")
 		else if (arg == "--grayscale")
 		{
 			grayscale = true;
 		}
+		else if (arg == "-O" || arg == "--output")
 		{
 			i++;
 			arg = argv[i];
@@ -204,7 +205,9 @@ int main(int argCount, char *argv[])
 			result = MapOutput::saveAsOTBM(map, saveName + ".otbm");
 
 		if (!result)
-			cout << "Warning: Map \"" + saveName + "\" could not be saved.";
+			cout << "Warning: Map \"" + saveName + "\" could not be saved." << endl;
+		else
+			cout << "Map " << saveName << " has been saved!" << endl;
 	}
 
 	return 0;

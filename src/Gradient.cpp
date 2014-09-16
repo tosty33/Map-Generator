@@ -23,12 +23,10 @@ bool Gradient::radialGradient(Map& map, Vec2<int> center, int radius)
 			if (tmp < 0) tmp = 0;
 			if (tmp > 1) tmp = 1;
 
-			map.map[x][y] += tmp;
-
-			if (map.map[x][y] < 0) map.map[x][y] = 0.0;
-			if (map.map[x][y] > 1) map.map[x][y] = 1.0;
+			map.map[x][y] = tmp;
 		}
 	}
 
+	map.normalize();
 	return true;
 }
