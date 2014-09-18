@@ -3,6 +3,7 @@
 
 #include "Tile.h"
 
+#include "Vec2.h"
 #include <vector>
 #include <string>
 
@@ -22,12 +23,22 @@ public:
 	Map(int size);
 	~Map();
 
+	void Map::uncheckTiles();
+	void recurrentSelect(Vec2<int> startPos, float minValue = 0.0f, float maxValue = 1.0f);
+	void reverseSelection();
+	void setSelection(float value);
+	void removeSmallIslands();
+
 	bool joinWith(const Map& joinMap);
 	void multiply(float value);
 
-	void clearMap();
+	void reverse();
+	void clear();
 	bool normalize();
 	void resizeMap(int newSize);
+
+	void addValue(float value);
+	void cutValues();
 
 	void smooth();
 

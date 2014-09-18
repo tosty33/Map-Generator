@@ -1,4 +1,5 @@
 #include "Map.h"
+#include <list>
 
 Map::Map(int size = 256)
 {
@@ -8,6 +9,82 @@ Map::Map(int size = 256)
 
 Map::~Map()
 {
+}
+
+void Map::uncheckTiles()
+{
+	for (int x = 0; x < size; x++)
+	for (int y = 0; y < size; y++)
+		map[x][y].selected = false;
+}
+
+void Map::recurrentSelect(Vec2<int> startPos, float minValue, float maxValue)
+{
+	int x = startPos.x, y = startPos.y;
+
+	list<Vec2<int>> l;
+	l.push_back(startPos);
+
+	while (!l.empty())
+	{
+		Vec2<int> tmp = l.front();
+		x = tmp.x, y = tmp.y;
+		l.pop_front();
+
+		if (map[x][y].selected)
+			continue;
+
+		if (map[x][y] >= minValue && map[x][y] <= maxValue)
+			map[x][y].selected = true;
+		else
+			continue;
+
+		if (x > 0 && !map[x - 1][y].selected  && map[x - 1][y] >= minValue)
+			l.push_back(Vec2<int>(x - 1, y));
+
+		// Right
+		if (x < size && !map[x + 1][y].selected && map[x + 1][y] >= minValue)
+			l.push_back(Vec2<int>(x + 1, y));
+
+		// Top
+		if (y > 0 && !map[x][y - 1].selected && map[x][y - 1] >= minValue)
+			l.push_back(Vec2<int>(x, y - 1));
+
+		// Bottom
+		if (y < size && !map[x][y + 1].selected && map[x][y + 1] >= minValue)
+			l.push_back(Vec2<int>(x, y + 1));
+	}
+}
+
+void Map::reverseSelection()
+{
+	for (int x = 0; x < size; x++)
+	for (int y = 0; y < size; y++)
+		map[x][y].selected = !map[x][y].selected;
+}
+
+void Map::setSelection(float value)
+{
+	for (int x = 0; x < size; x++)
+	{
+		for (int y = 0; y < size; y++)
+		{
+			if (map[x][y].selected)
+				map[x][y] = value;
+		}
+	}
+}
+
+void Map::removeSmallIslands()
+{
+	uncheckTiles();
+
+	Vec2<int> startTile(floor(size / 2), floor(size / 2));
+	recurrentSelect(startTile, 0.0f, 1.0f);
+	reverseSelection();
+	setSelection(-1.0f);
+
+	uncheckTiles();
 }
 
 bool Map::joinWith(const Map& joinMap)
@@ -57,11 +134,20 @@ void Map::multiply(float value)
 			map[x][y] -= 1.0f;
 		}
 	}
-
-	normalize();
 }
 
-void Map::clearMap()
+void Map::reverse()
+{
+	for (int x = 0; x < size; x++)
+	{
+		for (int y = 0; y < size; y++)
+		{
+			map[x][y] *= -1;
+		}
+	}
+}
+
+void Map::clear()
 {
 	for (int x = 0; x < size; x++)
 	{
@@ -140,6 +226,31 @@ void Map::resizeMap(int newSize)
 			tileVec.push_back(Tile());
 
 		map.push_back(tileVec);
+	}
+}
+
+void Map::addValue(float value)
+{
+	for (int x = 0; x < size; x++)
+	{
+		for (int y = 0; y < size; y++)
+		{
+			map[x][y] += value;
+		}
+	}
+}
+
+void Map::cutValues()
+{
+	for (int x = 0; x < size; x++)
+	{
+		for (int y = 0; y < size; y++)
+		{
+			if (map[x][y] > 1.0f)
+				map[x][y] = 1.0f;
+			else if (map[x][y] < -1.0f)
+				map[x][y] = -1.0f;
+		}
 	}
 }
 

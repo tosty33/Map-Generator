@@ -10,7 +10,9 @@ using namespace std;
 class Tile
 {
 public:
+	bool selected = false;
 	float value = 0.0;
+
 	Color getColor();
 	int getItemId();
 
@@ -84,6 +86,13 @@ public:
 	inline Tile& operator-= (T right)
 	{
 		value -= right;
+		return *this;
+	}
+
+	template <class T>
+	inline Tile& operator*= (T right)
+	{
+		value *= right;
 		return *this;
 	}
 

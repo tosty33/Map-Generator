@@ -20,7 +20,7 @@ IslandGenerator::~IslandGenerator()
 
 bool IslandGenerator::generate(Map& map)
 {
-	map.clearMap();
+	map.clear();
 
 	int result = rand(0, 100);
 	if (result < 20)

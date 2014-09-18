@@ -176,7 +176,7 @@ int main(int argCount, char *argv[])
 	for (int i = 0; i < count; i++)
 	{
 		// Generating
-		map.clearMap();
+		map.clear();
 
 		if (preset == "island")
 		{
