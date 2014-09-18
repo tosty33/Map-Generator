@@ -65,12 +65,21 @@ bool IslandGenerator::generate(Map& map)
 	Map tmpMap = map.getSize();
 
 	Noise::perlin(tmpMap, 8, 10, 0.4);
-	tmpMap.multiply(1.2f);
+	tmpMap.addValue(0.1f);
+	tmpMap.cutValues();
 	map.joinWith(tmpMap);
+
+	map.addValue(0.4f);
+	map.cutValues();
+
+	map.joinWith(tmpMap);
+	map.joinWith(tmpMap);
+	map.normalize();
+	map.removeSmallIslands();
 
 	for (int i = 0; i < 15; i++)
 		map.smooth();
 
-	map.normalize();
+
 	return true;
 }
